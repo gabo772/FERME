@@ -3,7 +3,7 @@
 require_once "conexion.php";
 
 class ModeloCategorias{
-//
+// hola mundooo
 	/*=============================================
 	CREAR FAMILIA
 	=============================================*/
