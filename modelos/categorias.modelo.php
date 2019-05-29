@@ -23,7 +23,7 @@ class ModeloCategorias{
 			return "error";
 		
 		}
-
+		
 		$stmt->close();
 		$stmt = null;
 

@@ -1,5 +1,5 @@
 <?php 
-  class Conexion{
+  class ConexionOracle{
     private $dbname='oci:dbname=XE';
     private $user='ferme';
     private $pass='1234';
@@ -29,7 +29,7 @@
     }
 
   }
-  $con=new Conexion();
+  $con=new ConexionOracle();
 
   
   $llamarMetodo=$con->conectar();
