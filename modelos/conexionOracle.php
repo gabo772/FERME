@@ -6,7 +6,7 @@
 
     public function conectar(){
       try{
-        $base=new PDO($dbname,$this->user,$this->pass);
+        $base=new PDO($this->dbname,$this->user,$this->pass);
         $base->exec("SET CARACTER SET utf8");
 
         if($base){

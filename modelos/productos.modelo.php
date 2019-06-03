@@ -38,8 +38,8 @@ class ModeloProductos{
 	}
 
 	static public function mdlOracleMostrarProductos($tabla,$item,$valor){
+		$con=new ConexionOracle();
 		if($item != null){
-			$con=new ConexionOracle();
 			$stmt = $con->conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
@@ -49,12 +49,11 @@ class ModeloProductos{
 			return $stmt -> fetch();
 
 		}else{
-			$con=new ConexionOracle();
 			$stmt = $con->conectar();
-			$stmt->prepare("SELECT * FROM $tabla");
-			$stmt -> execute();
+			$preparado=$stmt->prepare("SELECT * FROM $tabla");
+			$preparado->execute();
 
-			return $stmt -> fetchAll();
+			return $preparado -> fetchAll();
 
 		}
 

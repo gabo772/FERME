@@ -54,7 +54,7 @@
 
         </thead>
 
-      <!--   <tbody>
+         <tbody>
 
         <?php
 
@@ -95,7 +95,7 @@
 
         ?>
                  
-        </tbody> -->
+        </tbody> 
 
        </table>
 
