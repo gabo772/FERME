@@ -39,16 +39,15 @@
         <thead>
          
           <tr>
-           
            <th style="width:10px">#</th>
-           <th>Imagen</th>
+           <th>Imagen</th> 
            <th>Código</th>
            <th>Descripción</th>
            <th>Familia</th>
            <th>Stock</th>
-           <th>Precio de compra</th>
+           <th>Precio </th>
            <th>Precio de venta</th>
-           <th>Agregado</th>
+           <th>Fecha Vencimiento</th>
            <th>Acciones</th>
            
          </tr> 
@@ -63,26 +62,21 @@
 
         $valor = null;
 
-        $productos = ControladorProductos::ctrMostrarProductos($item, $valor);
+        $productos = ControladorProductos::ctrOracleMostrarProductos($item, $valor);
 
         foreach ($productos as $key => $value) {
           
           echo '<tr>
                   <td>'.($key+1).'</td>
                   <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>'.$value["codigo"].'</td>
-                  <td>'.$value["descripcion"].'</td>';
+                  <td>'.$value["ID_PRODUCTO"].'</td>
+                  <td>'.$value["NOMBRE"].'</td>';
 
-                  $item = "id";
-                  $valor = $value["id_categoria"];
-
-                  $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-
-                 echo '<td>'.$categoria["categoria"].'</td>
-                  <td>'.$value["stock"].'</td>
-                  <td>'.$value["precio_compra"].'</td>
-                  <td>'.$value["precio_venta"].'</td>
-                  <td>'.$value["fecha"].'</td>
+                 echo '<td>'.$value["FAMILIA"].'</td>
+                  <td>'.$value["STOCK"].'</td>
+                  <td>'.$value["PRECIO"].'</td>
+                  <td>'.$value["PRECIO"].'</td>
+                  <td>'.$value["FECHA_VENC"].'</td>
                   <td>
 
                     <div class="btn-group">

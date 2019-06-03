@@ -1,6 +1,7 @@
 <?php
 
 require_once "conexion.php";
+require_once "conexionOracle.php";
 
 class ModeloProductos{
 
@@ -34,6 +35,32 @@ class ModeloProductos{
 
 		$stmt = null;
 
+	}
+
+	static public function mdlOracleMostrarProductos($tabla,$item,$valor){
+		if($item != null){
+			$con=new ConexionOracle();
+			$stmt = $con->conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+			$con=new ConexionOracle();
+			$stmt = $con->conectar();
+			$stmt->prepare("SELECT * FROM $tabla");
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
 	}
 
 	/*=============================================

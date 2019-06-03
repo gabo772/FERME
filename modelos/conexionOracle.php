@@ -1,16 +1,16 @@
 <?php 
   class ConexionOracle{
-    private $dbname='oci:dbname=XE';
+    private $dbname='oci:dbname=//localhost:1521/XE';
     private $user='ferme';
-    private $pass='1234';
+    private $pass='123';
 
     public function conectar(){
       try{
-        $base=new PDO($this->dbname,$this->user,$this->pass);
+        $base=new PDO($dbname,$this->user,$this->pass);
         $base->exec("SET CARACTER SET utf8");
 
         if($base){
-          echo "Conexion exitosa";
+          //echo "Conexion exitosa";
           return $base;
         }
       }
@@ -29,11 +29,6 @@
     }
 
   }
-  $con=new ConexionOracle();
-
-  
-  $llamarMetodo=$con->conectar();
-  $con->listarRutsClientes($llamarMetodo);
   
 
 ?>

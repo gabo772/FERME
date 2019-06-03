@@ -15,6 +15,15 @@ class ControladorProductos{
 		return $respuesta;
 
 	}
+	static public function ctrOracleMostrarProductos($item, $valor){
+
+		$tabla = "vista_producto";
+
+		$respuesta = ModeloProductos::mdlOracleMostrarProductos($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
 
 	/*=============================================
 	CREAR PRODUCTO
