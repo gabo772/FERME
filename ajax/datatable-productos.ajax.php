@@ -32,7 +32,7 @@ class TablaProductos{
 		  	$imagen = "<img src='".$productos[$i]["IMAGEN"]."' width='40px'>";
 
 		  	/*=============================================
- 	 		TRAEMOS LA CATEGORÍA
+ 	 		TRAEMOS EL  TIPO
   			=============================================*/ 
 
 		  	//$item = "id";
@@ -40,6 +40,10 @@ class TablaProductos{
 
 		  	//$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
+			/*=============================================
+ 	 		TRAEMOS LA FAMILIA
+			  =============================================*/
+			  
 		  	/*=============================================
  	 		STOCK
   			=============================================*/ 
