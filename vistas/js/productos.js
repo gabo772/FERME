@@ -48,7 +48,7 @@ $(".tablaProductos").DataTable({
 CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
 =============================================*/
 
-/* $("#nuevaCategoria").change(function() {
+$("#nuevaCategoria").change(function() {
   var idCategoria = $(this).val();
 
   var datos = new FormData();
@@ -67,17 +67,17 @@ CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
         var nuevoCodigo = idCategoria + "01";
         $("#nuevoCodigo").val(nuevoCodigo);
       } else {
-        var nuevoCodigo = Number(respuesta["codigo"]) + 1;
+        var nuevoCodigo = Number(respuesta["id_producto"]) + 1;
         $("#nuevoCodigo").val(nuevoCodigo);
       }
     }
   });
 });
- */
+
 /*=============================================
 AGREGANDO PRECIO DE VENTA
 =============================================*/
-/* $("#nuevoPrecioCompra, #editarPrecioCompra").change(function() {
+$("#nuevoPrecioCompra, #editarPrecioCompra").change(function() {
   if ($(".porcentaje").prop("checked")) {
     var valorPorcentaje = $(".nuevoPorcentaje").val();
 
@@ -95,12 +95,12 @@ AGREGANDO PRECIO DE VENTA
     $("#editarPrecioVenta").val(editarPorcentaje);
     $("#editarPrecioVenta").prop("readonly", true);
   }
-}); */
+});
 
 /*=============================================
 CAMBIO DE PORCENTAJE
 =============================================*/
-/* $(".nuevoPorcentaje").change(function() {
+$(".nuevoPorcentaje").change(function() {
   if ($(".porcentaje").prop("checked")) {
     var valorPorcentaje = $(this).val();
 
@@ -128,20 +128,20 @@ $(".porcentaje").on("ifUnchecked", function() {
 $(".porcentaje").on("ifChecked", function() {
   $("#nuevoPrecioVenta").prop("readonly", true);
   $("#editarPrecioVenta").prop("readonly", true);
-}); */
+});
 
 /*=============================================
 SUBIENDO LA FOTO DEL PRODUCTO
 =============================================*/
 
-/* $(".nuevaImagen").change(function() {
+$(".nuevaImagen").change(function() {
   var imagen = this.files[0];
 
   /*=============================================
   	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
   	=============================================*/
 
-/* if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
+  if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
     $(".nuevaImagen").val("");
 
     swal({
@@ -169,15 +169,14 @@ SUBIENDO LA FOTO DEL PRODUCTO
       $(".previsualizar").attr("src", rutaImagen);
     });
   }
-});  */
+});
 
 /*=============================================
 EDITAR PRODUCTO
 =============================================*/
 
-/* $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function() {
+$(".tablaProductos tbody").on("click", "button.btnEditarProducto", function() {
   var idProducto = $(this).attr("idProducto");
-
   var datos = new FormData();
   datos.append("idProducto", idProducto);
 
@@ -191,7 +190,7 @@ EDITAR PRODUCTO
     dataType: "json",
     success: function(respuesta) {
       var datosCategoria = new FormData();
-      datosCategoria.append("idCategoria", respuesta["id_categoria"]);
+      datosCategoria.append("idFamilia", respuesta["familia_id_familia"]);
 
       $.ajax({
         url: "ajax/categorias.ajax.php",
@@ -202,20 +201,20 @@ EDITAR PRODUCTO
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-          $("#editarCategoria").val(respuesta["id"]);
-          $("#editarCategoria").html(respuesta["categoria"]);
+          $("#editarCategoria").val(respuesta["id_familia"]);
+          $("#editarCategoria").html(respuesta["descripcion"]);
         }
       });
 
-      $("#editarCodigo").val(respuesta["codigo"]);
+      $("#editarCodigo").val(respuesta["id_producto"]);
 
-      $("#editarDescripcion").val(respuesta["descripcion"]);
+      $("#editarDescripcion").val(respuesta["nombre"]);
 
       $("#editarStock").val(respuesta["stock"]);
 
-      $("#editarPrecioCompra").val(respuesta["precio_compra"]);
+      $("#editarPrecioCompra").val(respuesta["precio"]);
 
-      $("#editarPrecioVenta").val(respuesta["precio_venta"]);
+      $("#editarPrecioVenta").val(respuesta["precio"]);
 
       if (respuesta["imagen"] != "") {
         $("#imagenActual").val(respuesta["imagen"]);
@@ -224,13 +223,13 @@ EDITAR PRODUCTO
       }
     }
   });
-}); */
+});
 
 /*=============================================
 ELIMINAR PRODUCTO
 =============================================*/
 
-/* $(".tablaProductos tbody").on(
+$(".tablaProductos tbody").on(
   "click",
   "button.btnEliminarProducto",
   function() {
@@ -259,4 +258,4 @@ ELIMINAR PRODUCTO
       }
     });
   }
-); */
+);

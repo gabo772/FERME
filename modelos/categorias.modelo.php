@@ -60,6 +60,33 @@ class ModeloCategorias{
 		$stmt = null;
 
 	}
+	static public function mdlOracleMostrarCategorias($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = ConexionOracle::conectar();
+			$preparado=$stmt->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$preparado -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$preparado -> execute();
+
+			return $preparado -> fetch();
+
+		}else{
+
+			$stmt = ConexionOracle::conectar();
+			$preparado=$stmt->prepare("SELECT * FROM $tabla");
+			$preparado -> execute();
+
+			return $preparado -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 	/*=============================================
 	EDITAR FAMILIA

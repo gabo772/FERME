@@ -38,18 +38,19 @@ class ModeloProductos{
 	}
 
 	static public function mdlOracleMostrarProductos($tabla,$item,$valor){
-		$con=new ConexionOracle();
+		
 		if($item != null){
-			$stmt = $con->conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
+			
+			$stmt = ConexionOracle::conectar();
+			$preparado=$stmt->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_producto DESC");
+			$preparado -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$preparado -> execute();
 
-			$stmt -> execute();
-
-			return $stmt -> fetch();
+			return $preparado -> fetch();
 
 		}else{
-			$stmt = $con->conectar();
+			$stmt = ConexionOracle::conectar();
 			$preparado=$stmt->prepare("SELECT * FROM $tabla");
 			$preparado->execute();
 
@@ -65,19 +66,20 @@ class ModeloProductos{
 	/*=============================================
 	REGISTRO DE PRODUCTO
 	=============================================*/
-	static public function mdlIngresarProducto($tabla, $datos){
+	static public function mdlOracleIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, codigo, descripcion, imagen, stock, precio_compra, precio_venta) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta)");
+		$stmt = ConexionOracle::conectar();
+		$preparado=$stmt->prepare("INSERT INTO $tabla(familia_id_familia, id_producto, nombre, imagen, stock, precio, precio) VALUES (:familia_id_familia, :id_producto, :nombre, :imagen, :stock, :precio, :precio)");
 
-		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
+		$preparado->bindParam(":familia_id_familia", $datos["familia_id_familia"], PDO::PARAM_INT);
+		$preparado->bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_STR);
+		$preparado->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$preparado->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$preparado->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
+		$preparado->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
+		$preparado->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+		if($preparado->execute()){
 
 			return "ok";
 
@@ -95,19 +97,20 @@ class ModeloProductos{
 	/*=============================================
 	EDITAR PRODUCTO
 	=============================================*/
-	static public function mdlEditarProducto($tabla, $datos){
+	static public function mdlOracleEditarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, descripcion = :descripcion, imagen = :imagen, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo");
+		$stmt = ConexionOracle::conectar();
+		$preparado=$stmt->prepare("UPDATE $tabla SET familia_id_familia = :familia_id_familia, nombre = :nombre, imagen = :imagen, stock = :stock, precio = :precio, precio = :precio WHERE id_producto = :id_producto");
 
-		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
+		$preparado->bindParam(":familia_id_familia", $datos["familia_id_familia"], PDO::PARAM_INT);
+		$preparado->bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_STR);
+		$preparado->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$preparado->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$preparado->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
+		$preparado->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
+		$preparado->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+		if($preparado->execute()){
 
 			return "ok";
 
@@ -126,13 +129,14 @@ class ModeloProductos{
 	BORRAR PRODUCTO
 	=============================================*/
 
-	static public function mdlEliminarProducto($tabla, $datos){
+	static public function mdlOracleEliminarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt = ConexionOracle::conectar();
+		$preparado=$stmt->prepare("DELETE FROM $tabla WHERE id_producto = :id_producto");
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+		$preparado -> bindParam(":id_producto", $datos, PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+		if($preparado -> execute()){
 
 			return "ok";
 		

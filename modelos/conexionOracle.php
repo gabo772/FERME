@@ -1,12 +1,9 @@
 <?php 
   class ConexionOracle{
-    private $dbname='oci:dbname=//localhost:1521/XE';
-    private $user='ferme';
-    private $pass='123';
-
-    public function conectar(){
+    
+    static public function conectar(){
       try{
-        $base=new PDO($this->dbname,$this->user,$this->pass);
+        $base=new PDO('oci:dbname=//localhost:1521/XE','ferme','123');
         $base->exec("SET CARACTER SET utf8");
 
         if($base){

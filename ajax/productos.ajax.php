@@ -9,14 +9,14 @@ class AjaxProductos{
   /*=============================================
   GENERAR CÓDIGO A PARTIR DE ID CATEGORIA
   =============================================*/
-  public $idCategoria;
+  public $idFamilia;
 
   public function ajaxCrearCodigoProducto(){
 
-    $item = "id_categoria";
-    $valor = $this->idCategoria;
+    $item = "familia_id_familia";
+    $valor = $this->idFamilia;
 
-    $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+    $respuesta = ControladorProductos::ctrOracleMostrarProductos($item, $valor);
 
     echo json_encode($respuesta);
 
@@ -31,10 +31,10 @@ class AjaxProductos{
 
   public function ajaxEditarProducto(){
 
-    $item = "id";
+    $item = "id_producto";
     $valor = $this->idProducto;
-
-    $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+    
+    $respuesta = ControladorProductos::ctrOracleMostrarProductos($item, $valor);
 
     echo json_encode($respuesta);
 

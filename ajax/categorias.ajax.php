@@ -10,6 +10,7 @@ class AjaxCategorias{
 	=============================================*/	
 
 	public $idCategoria;
+	public $idFamilia;
 
 	public function ajaxEditarCategoria(){
 
@@ -21,14 +22,24 @@ class AjaxCategorias{
 		echo json_encode($respuesta);
 
 	}
+	public function ajaxEditarFamilia(){
+
+		$item = "id_familia";
+		$valor = $this->idFamilia;
+
+		$respuesta = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
 }
 
 /*=============================================
 EDITAR FAMILIAS
 =============================================*/	
-if(isset($_POST["idCategoria"])){
+if(isset($_POST["idFamilia"])){
 
 	$categoria = new AjaxCategorias();
-	$categoria -> idCategoria = $_POST["idCategoria"];
-	$categoria -> ajaxEditarCategoria();
+	$categoria -> idFamilia = $_POST["idFamilia"];
+	$categoria -> ajaxEditarFamilia();
 }

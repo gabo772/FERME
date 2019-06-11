@@ -35,10 +35,10 @@ class TablaProductos{
  	 		TRAEMOS LA CATEGORÍA
   			=============================================*/ 
 
-		  	//$item = "id";
-		  	//$valor = $productos[$i]["id_categoria"];
+		  	$item = "id_familia";
+		  	$valor = $productos[$i]["familia_id_familia"];
 
-		  	//$categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+		  	$familia = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
 
 		  	/*=============================================
  	 		STOCK
@@ -77,12 +77,12 @@ class TablaProductos{
 			      "'.$imagen.'",
 				  "'.$productos[$i]["ID_PRODUCTO"].'",
 			      "'.$productos[$i]["NOMBRE"].'",
-			      "'.$productos[$i]["FAMILIA"].'",
+			      "'.$familia[0]["DESCRIPCION"].'",
 			      "'.$stock.'",
+			      "'.$productos[$i]["PRECIO"].'", 
 			      "'.$productos[$i]["PRECIO"].'",
-			      "'.$productos[$i]["PRECIO"].'",
-			      "'.$productos[$i]["FECHA_VENC"].'",
-			      "'.$botones.'"
+				  "'.$productos[$i]["FECHA_VENC"].'",
+				  "'.$botones.'"
 			    ],';
 
 		  }

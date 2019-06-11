@@ -8,7 +8,7 @@ class ControladorProductos{
 
 	static public function ctrMostrarProductos($item, $valor){
 
-		$tabla = "productos";
+		$tabla = "producto";
 
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor);
 
@@ -17,7 +17,7 @@ class ControladorProductos{
 	}
 	static public function ctrOracleMostrarProductos($item, $valor){
 
-		$tabla = "vista_producto";
+		$tabla = "producto";
 
 		$respuesta = ModeloProductos::mdlOracleMostrarProductos($tabla, $item, $valor);
 
@@ -29,7 +29,7 @@ class ControladorProductos{
 	CREAR PRODUCTO
 	=============================================*/
 
-	static public function ctrCrearProducto(){
+	static public function ctrOracleCrearProducto(){
 
 		if(isset($_POST["nuevaDescripcion"])){
 
@@ -105,14 +105,14 @@ class ControladorProductos{
 
 				}
 
-				$tabla = "productos";
+				$tabla = "producto";
 
-				$datos = array("id_categoria" => $_POST["nuevaCategoria"],
-							   "codigo" => $_POST["nuevoCodigo"],
-							   "descripcion" => $_POST["nuevaDescripcion"],
+				$datos = array("familia_id_familia" => $_POST["nuevaCategoria"],
+							   "id_producto" => $_POST["nuevoCodigo"],
+							   "nombre" => $_POST["nuevaDescripcion"],
 							   "stock" => $_POST["nuevoStock"],
-							   "precio_compra" => $_POST["nuevoPrecioCompra"],
-							   "precio_venta" => $_POST["nuevoPrecioVenta"],
+							   "precio" => $_POST["nuevoPrecioCompra"],
+							   "precio" => $_POST["nuevoPrecioVenta"],
 							   "imagen" => $ruta);
 
 				$respuesta = ModeloProductos::mdlIngresarProducto($tabla, $datos);
@@ -166,7 +166,7 @@ class ControladorProductos{
 	EDITAR PRODUCTO
 	=============================================*/
 
-	static public function ctrEditarProducto(){
+	static public function ctrOracleEditarProducto(){
 
 		if(isset($_POST["editarDescripcion"])){
 
@@ -254,17 +254,17 @@ class ControladorProductos{
 
 				}
 
-				$tabla = "productos";
+				$tabla = "producto";
 
-				$datos = array("id_categoria" => $_POST["editarCategoria"],
-							   "codigo" => $_POST["editarCodigo"],
-							   "descripcion" => $_POST["editarDescripcion"],
+				$datos = array("familia_id_familia" => $_POST["editarCategoria"],
+							   "id_producto" => $_POST["editarCodigo"],
+							   "nombre" => $_POST["editarDescripcion"],
 							   "stock" => $_POST["editarStock"],
-							   "precio_compra" => $_POST["editarPrecioCompra"],
-							   "precio_venta" => $_POST["editarPrecioVenta"],
+							   "precio" => $_POST["editarPrecioCompra"],
+							   "precio" => $_POST["editarPrecioVenta"],
 							   "imagen" => $ruta);
 
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
+				$respuesta = ModeloProductos::mdlOracleEditarProducto($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -314,7 +314,7 @@ class ControladorProductos{
 	/*=============================================
 	BORRAR PRODUCTO
 	=============================================*/
-	static public function ctrEliminarProducto(){
+	static public function ctrOracleEliminarProducto(){
 
 		if(isset($_GET["idProducto"])){
 
@@ -328,7 +328,7 @@ class ControladorProductos{
 
 			}
 
-			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+			$respuesta = ModeloProductos::mdlOracleEliminarProducto($tabla, $datos);
 
 			if($respuesta == "ok"){
 

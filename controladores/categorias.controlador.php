@@ -78,6 +78,15 @@ class ControladorCategorias{
 		return $respuesta;
 	
 	}
+	static public function ctrOracleMostrarCategorias($item, $valor){
+
+		$tabla = "familia";
+
+		$respuesta = ModeloCategorias::mdlOracleMostrarCategorias($tabla, $item, $valor);
+
+		return $respuesta;
+	
+	}
 
 	/*=============================================
 	EDITAR CATEGORIA

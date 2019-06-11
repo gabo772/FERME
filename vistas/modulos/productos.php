@@ -157,11 +157,11 @@ MODAL AGREGAR PRODUCTO
                   $item = null;
                   $valor = null;
 
-                  $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                  $categorias = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
 
                   foreach ($categorias as $key => $value) {
                     
-                    echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                    echo '<option value="'.$value["id_familia"].'">'.$value["descripcion"].'</option>';
                   }
 
                   ?>
@@ -313,7 +313,7 @@ MODAL AGREGAR PRODUCTO
         <?php
 
           $crearProducto = new ControladorProductos();
-          $crearProducto -> ctrCrearProducto();
+          $crearProducto -> ctrOracleCrearProducto();
 
         ?>  
 
@@ -517,7 +517,7 @@ MODAL EDITAR PRODUCTO
         <?php
 
           $editarProducto = new ControladorProductos();
-          $editarProducto -> ctrEditarProducto();
+          $editarProducto -> ctrOracleEditarProducto();
 
         ?>      
 
@@ -530,7 +530,7 @@ MODAL EDITAR PRODUCTO
 <?php
 
   $eliminarProducto = new ControladorProductos();
-  $eliminarProducto -> ctrEliminarProducto();
+  $eliminarProducto -> ctrOracleEliminarProducto();
 
 ?>      
 
