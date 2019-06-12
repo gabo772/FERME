@@ -13,7 +13,7 @@ class AjaxProductos{
 
   public function ajaxCrearCodigoProducto(){
 
-    $item = "familia_id_familia";
+    $item = "FAMILIA_ID_FAMILIA";
     $valor = $this->idFamilia;
 
     $respuesta = ControladorProductos::ctrOracleMostrarProductos($item, $valor);
@@ -31,7 +31,7 @@ class AjaxProductos{
 
   public function ajaxEditarProducto(){
 
-    $item = "id_producto";
+    $item = "ID_PRODUCTO";
     $valor = $this->idProducto;
     
     $respuesta = ControladorProductos::ctrOracleMostrarProductos($item, $valor);
@@ -47,10 +47,10 @@ class AjaxProductos{
 GENERAR CÓDIGO A PARTIR DE ID CATEGORIA
 =============================================*/ 
 
-if(isset($_POST["idCategoria"])){
+if(isset($_POST["idFamilia"])){
 
   $codigoProducto = new AjaxProductos();
-  $codigoProducto -> idCategoria = $_POST["idCategoria"];
+  $codigoProducto -> idFamilia = $_POST["idFamilia"];
   $codigoProducto -> ajaxCrearCodigoProducto();
 
 }

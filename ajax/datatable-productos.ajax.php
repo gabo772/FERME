@@ -35,8 +35,8 @@ class TablaProductos{
  	 		TRAEMOS LA CATEGORÍA
   			=============================================*/ 
 
-		  	$item = "id_familia";
-		  	$valor = $productos[$i]["familia_id_familia"];
+		  	$item = "ID_FAMILIA";
+		  	$valor = $productos[$i]["FAMILIA_ID_FAMILIA"];
 
 		  	$familia = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
 
@@ -62,22 +62,14 @@ class TablaProductos{
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-			  $botones =  "
-			  <div class='btn-group'>
-			  	<button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["ID_PRODUCTO"]."' data-toggle='modal' data-target='#modalEditarProducto'>
-				  	<i class='fa fa-pencil'></i>
-			  	</button>
-			  	<button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["ID_PRODUCTO"]."' codigo='".$productos[$i]["ID_PRODUCTO"]."' imagen='".$productos[$i]["IMAGEN"]."'>
-				  	<i class='fa fa-times'></i>
-			  	</button>
-			  </div>"; 
+			  $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["ID_PRODUCTO"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["ID_PRODUCTO"]."' codigo='".$productos[$i]["ID_PRODUCTO"]."' imagen='".$productos[$i]["IMAGEN"]."'><i class='fa fa-times'></i></button></div>"; 
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$imagen.'",
 				  "'.$productos[$i]["ID_PRODUCTO"].'",
 			      "'.$productos[$i]["NOMBRE"].'",
-			      "'.$familia[0]["DESCRIPCION"].'",
+			      "'.$familia["DESCRIPCION"].'",
 			      "'.$stock.'",
 			      "'.$productos[$i]["PRECIO"].'", 
 			      "'.$productos[$i]["PRECIO"].'",

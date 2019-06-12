@@ -161,7 +161,7 @@ MODAL AGREGAR PRODUCTO
 
                   foreach ($categorias as $key => $value) {
                     
-                    echo '<option value="'.$value["id_familia"].'">'.$value["descripcion"].'</option>';
+                    echo '<option value="'.$value["ID_FAMILIA"].'">'.$value["DESCRIPCION"].'</option>';
                   }
 
                   ?>

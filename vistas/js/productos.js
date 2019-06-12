@@ -49,10 +49,10 @@ CAPTURANDO LA CATEGORIA PARA ASIGNAR CÓDIGO
 =============================================*/
 
 $("#nuevaCategoria").change(function() {
-  var idCategoria = $(this).val();
+  var idFamilia = $(this).val();
 
   var datos = new FormData();
-  datos.append("idCategoria", idCategoria);
+  datos.append("idFamilia", idFamilia);
 
   $.ajax({
     url: "ajax/productos.ajax.php",
@@ -64,7 +64,7 @@ $("#nuevaCategoria").change(function() {
     dataType: "json",
     success: function(respuesta) {
       if (!respuesta) {
-        var nuevoCodigo = idCategoria + "01";
+        var nuevoCodigo = idFamilia + "01";
         $("#nuevoCodigo").val(nuevoCodigo);
       } else {
         var nuevoCodigo = Number(respuesta["id_producto"]) + 1;
@@ -190,7 +190,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function() {
     dataType: "json",
     success: function(respuesta) {
       var datosCategoria = new FormData();
-      datosCategoria.append("idFamilia", respuesta["familia_id_familia"]);
+      datosCategoria.append("idFamilia", respuesta["FAMILIA_ID_FAMILIA"]);
 
       $.ajax({
         url: "ajax/categorias.ajax.php",
@@ -201,25 +201,25 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-          $("#editarCategoria").val(respuesta["id_familia"]);
-          $("#editarCategoria").html(respuesta["descripcion"]);
+          $("#editarCategoria").val(respuesta["ID_FAMILIA"]);
+          $("#editarCategoria").html(respuesta["DESCRIPCION"]);
         }
       });
 
-      $("#editarCodigo").val(respuesta["id_producto"]);
+      $("#editarCodigo").val(respuesta["ID_PRODUCTO"]);
 
-      $("#editarDescripcion").val(respuesta["nombre"]);
+      $("#editarDescripcion").val(respuesta["NOMBRE"]);
 
-      $("#editarStock").val(respuesta["stock"]);
+      $("#editarStock").val(respuesta["STOCK"]);
 
-      $("#editarPrecioCompra").val(respuesta["precio"]);
+      $("#editarPrecioCompra").val(respuesta["PRECIO"]);
 
-      $("#editarPrecioVenta").val(respuesta["precio"]);
+      $("#editarPrecioVenta").val(respuesta["PRECIO"]);
 
-      if (respuesta["imagen"] != "") {
-        $("#imagenActual").val(respuesta["imagen"]);
+      if (respuesta["IMAGEN"] != "") {
+        $("#imagenActual").val(respuesta["IMAGEN"]);
 
-        $(".previsualizar").attr("src", respuesta["imagen"]);
+        $(".previsualizar").attr("src", respuesta["IMAGEN"]);
       }
     }
   });

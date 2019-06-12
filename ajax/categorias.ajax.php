@@ -24,7 +24,7 @@ class AjaxCategorias{
 	}
 	public function ajaxEditarFamilia(){
 
-		$item = "id_familia";
+		$item = "ID_FAMILIA";
 		$valor = $this->idFamilia;
 
 		$respuesta = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
