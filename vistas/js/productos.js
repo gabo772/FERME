@@ -190,7 +190,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function() {
     dataType: "json",
     success: function(respuesta) {
       var datosCategoria = new FormData();
-      datosCategoria.append("idFamilia", respuesta["FAMILIA_ID_FAMILIA"]);
+      datosCategoria.append("idFamilia", respuesta["ID_FAMILIA"]);
 
       $.ajax({
         url: "ajax/categorias.ajax.php",

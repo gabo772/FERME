@@ -1,6 +1,7 @@
 <?php
 
 require_once "conexion.php";
+require_once "conexionOracle.php";
 
 class ModeloCategorias{
 // hola mundooo

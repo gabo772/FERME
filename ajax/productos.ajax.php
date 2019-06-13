@@ -13,7 +13,7 @@ class AjaxProductos{
 
   public function ajaxCrearCodigoProducto(){
 
-    $item = "FAMILIA_ID_FAMILIA";
+    $item = "ID_FAMILIA";
     $valor = $this->idFamilia;
 
     $respuesta = ControladorProductos::ctrOracleMostrarProductos($item, $valor);

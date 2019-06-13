@@ -36,7 +36,7 @@ class TablaProductos{
   			=============================================*/ 
 
 		  	$item = "ID_FAMILIA";
-		  	$valor = $productos[$i]["FAMILIA_ID_FAMILIA"];
+		  	$valor = $productos[$i]["ID_FAMILIA"];
 
 		  	$familia = ControladorCategorias::ctrOracleMostrarCategorias($item, $valor);
 
@@ -73,7 +73,7 @@ class TablaProductos{
 			      "'.$stock.'",
 			      "'.$productos[$i]["PRECIO"].'", 
 			      "'.$productos[$i]["PRECIO"].'",
-				  "'.$productos[$i]["FECHA_VENC"].'",
+				  "'.$productos[$i]["FEC_VENCIMIENTO"].'",
 				  "'.$botones.'"
 			    ],';
 

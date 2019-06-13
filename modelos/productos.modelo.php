@@ -100,9 +100,9 @@ class ModeloProductos{
 	static public function mdlOracleEditarProducto($tabla, $datos){
 
 		$stmt = ConexionOracle::conectar();
-		$preparado=$stmt->prepare("UPDATE $tabla SET familia_id_familia = :familia_id_familia, nombre = :nombre, imagen = :imagen, stock = :stock, precio = :precio, precio = :precio WHERE id_producto = :id_producto");
+		$preparado=$stmt->prepare("UPDATE $tabla SET id_familia = :id_familia, nombre = :nombre, imagen = :imagen, stock = :stock, precio = :precio, precio = :precio WHERE id_producto = :id_producto");
 
-		$preparado->bindParam(":familia_id_familia", $datos["familia_id_familia"], PDO::PARAM_INT);
+		$preparado->bindParam(":id_familia", $datos["id_familia"], PDO::PARAM_INT);
 		$preparado->bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_STR);
 		$preparado->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$preparado->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);

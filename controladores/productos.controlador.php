@@ -256,7 +256,7 @@ class ControladorProductos{
 
 				$tabla = "producto";
 
-				$datos = array("familia_id_familia" => $_POST["editarCategoria"],
+				$datos = array("id_familia" => $_POST["editarCategoria"],
 							   "id_producto" => $_POST["editarCodigo"],
 							   "nombre" => $_POST["editarDescripcion"],
 							   "stock" => $_POST["editarStock"],
@@ -318,7 +318,7 @@ class ControladorProductos{
 
 		if(isset($_GET["idProducto"])){
 
-			$tabla ="productos";
+			$tabla ="producto";
 			$datos = $_GET["idProducto"];
 
 			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png"){

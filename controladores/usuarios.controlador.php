@@ -15,12 +15,12 @@ class ControladorUsuarios{
 
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarios";
+				$tabla = "usuario";
 
 				$item = "usuario";
 				$valor = $_POST["ingUsuario"];
 
-				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+				$respuesta = ModeloUsuarios::MdlOracleMostrarUsuarios($tabla, $item, $valor);
 
 				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
@@ -241,6 +241,14 @@ class ControladorUsuarios{
 		$tabla = "usuarios";
 
 		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+	static public function ctrOracleMostrarUsuarios($item, $valor){
+
+		$tablas = array("cliente","vendedor");
+
+		$respuesta = ModeloUsuarios::MdlOracleMostrarUsuarios($tabla, $item, $valor);
 
 		return $respuesta;
 	}

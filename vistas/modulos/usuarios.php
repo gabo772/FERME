@@ -60,7 +60,7 @@
         $item = null;
         $valor = null;
 
-        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+        $usuarios = ControladorUsuarios::ctrOracleMostrarUsuarios($item, $valor);
 
        foreach ($usuarios as $key => $value){
          
