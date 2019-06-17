@@ -14,24 +14,23 @@ class ControladorUsuarios{
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
 				$tabla = "usuario";
 
-				$item = "usuario";
+				$item = "USUARIO";
 				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlOracleMostrarUsuarios($tabla, $item, $valor);
+				//if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar)
+				if($respuesta["USUARIO"] == $_POST["ingUsuario"] && $respuesta["PASSWORD"] == $_POST["ingPassword"]){
 
-				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
-
-					if($respuesta["estado"] == 1){
+					if($respuesta["ESTADO"] == 1){
 
 						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["usuario"] = $respuesta["usuario"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
+						$_SESSION["id"] = $respuesta["ID"];
+						$_SESSION["nombre"] = $respuesta["NOMBRE"];
+						$_SESSION["usuario"] = $respuesta["USUARIO"];
+						$_SESSION["foto"] = $respuesta["FOTO"];
+						$_SESSION["perfil"] = $respuesta["PERFIL"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -39,18 +38,19 @@ class ControladorUsuarios{
 
 						date_default_timezone_set('America/Santiago');
 
-						$fecha = date('Y-m-d');
+						$fecha = date('d/m/Y');
 						$hora = date('H:i:s');
+						$timestamp='CURRENT_TIMESTAMP';
 
 						$fechaActual = $fecha.' '.$hora;
 
-						$item1 = "ultimo_login";
+						$item1 = "ULTIMO_LOGIN";
 						$valor1 = $fechaActual;
 
 						$item2 = "id";
-						$valor2 = $respuesta["id"];
+						$valor2 = $respuesta["ID"];
 
-						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+						$ultimoLogin = ModeloUsuarios::mdlOracleActualizarUltimoLoginUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
 						if($ultimoLogin == "ok"){
 
